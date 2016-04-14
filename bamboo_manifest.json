@@ -1,0 +1,63 @@
+{
+	"name": "Bamboo Plugin 1.0",
+	"vendor": "CA technologies",
+	"uniqueId": "ca.cde.bamboo",
+	"description": "CA Release Automation Bamboo Plugin powered by Hook.io",
+	"iconUrl": "https://cloud.githubusercontent.com/assets/14964166/12397368/7823d66e-be15-11e5-9b94-86673ff64912.png",
+	"version": "1.0",
+	"relativeUrl": false,
+	"endpointTemplate": {
+		"name": "Bamboo - Build",
+		"uniqueId": "ca.cde.bamboo.build.endpoint",
+		"description": "Bamboo Endpoint",
+		"serviceType": "ENDPOINT",
+		"endPointType": "Bamboo",
+		"parameters": [{
+			"name": "user",
+			"uniqueId": "ca.cde.bamboo.endpoint.user",
+			"displayName": "Bamboo User",
+			"type": "string",
+			"isOptional": false
+		},
+		{
+			"name": "Password",
+			"uniqueId": "ca.cde.bamboo.endpoint.password",
+			"displayName": "Bamboo Password",
+			"type": "password",
+			"isOptional": false
+		},
+		{
+			"name": "bambooBuildProject",
+			"uniqueId": "ca.cde.bamboo.endpoint.buildProject",
+			"displayName": "Bamboo Build Project",
+			"type": "string",
+			"isOptional": false
+		}]
+	},
+	"services": [{
+		"name": "Update Github issue state",
+		"uniqueId": "ido.github.test.task.update_issue",
+		"description": "Use this task to close and open GitHub issues (tickets)",
+		"serviceType": "TASK",
+		"url": "https://hook.io/rpm-user/github-issues",
+		"parameters": [{
+			"name": "issueId",
+			"uniqueId": "ido.github.test.task.update_issue.issueId",
+			"displayName": "Issue id",
+			"type": "string",
+			"isOptional": false
+		},
+		{
+			"name": "issueStatus",
+			"uniqueId": "ido.github.test.task.update_issue.issueStatus",
+			"displayName": "Issue status (closed/open)",
+			"type": "string",
+			"isOptional": false,
+			"defaultValue": "closed",
+			"possibleValues": [
+		  		"closed",
+		  		"open"
+			]
+		}]
+	}]
+}

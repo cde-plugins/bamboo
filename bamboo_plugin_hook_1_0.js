@@ -7,15 +7,15 @@ module['exports'] = function runBambooBuild (hook) {
     // Read task inputs
     var request = require('request'),
         endPointProperties = hook.req.body.endPointProperties,
+        bambooserver = endPointProperties.bambooserver,
         user = endPointProperties.user,
-        repository = endPointProperties.repository,
-        authorization = endPointProperties.authorization,
+        password = endPointProperties.password,
 
         taskProperties = hook.req.body.taskProperties,
-        issueId = taskProperties.issueId,
+        planKey = taskProperties.planKey,
         newStatus = taskProperties.issueStatus;
 
-    authorization = authorization == "Trust me" ? hook.env.githubAuth : authorization;
+    //authorization = authorization == "Trust me" ? hook.env.githubAuth : authorization;
     headers = {'Authorization': authorization, 'User-Agent': 'request'};
     requestBody = JSON.stringify({ "state" : newStatus });
     console.log("user["+user+"] repository["+repository+"] issueId["+issueId+"] will change to ["+newStatus+"]");

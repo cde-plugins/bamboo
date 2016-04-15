@@ -35,29 +35,24 @@
 		}]
 	},
 	"services": [{
-		"name": "Update Github issue state",
-		"uniqueId": "ido.github.test.task.update_issue",
-		"description": "Use this task to close and open GitHub issues (tickets)",
+		"name": "Run Bamboo Build",
+		"uniqueId": "ca.cde.bamboo.task.run_build",
+		"description": "Use this task to run a Bamboo directed build",
 		"serviceType": "TASK",
-		"url": "https://hook.io/rpm-user/github-issues",
+		"url": "https://hook.io/cde-plugins/runBamboo-build",
 		"parameters": [{
-			"name": "issueId",
-			"uniqueId": "ido.github.test.task.update_issue.issueId",
-			"displayName": "Issue id",
+			"planKey": "planKey",
+			"uniqueId": "ca.cde.bamboo.task.run_build.planKey",
+			"displayName": "Plan Key",
 			"type": "string",
 			"isOptional": false
 		},
 		{
-			"name": "issueStatus",
-			"uniqueId": "ido.github.test.task.update_issue.issueStatus",
-			"displayName": "Issue status (closed/open)",
+			"name": "buildStatus",
+			"uniqueId": "ca.cde.bamboo.task.run_build.buildStatus",
+			"displayName": "Build Status",
 			"type": "string",
-			"isOptional": false,
-			"defaultValue": "closed",
-			"possibleValues": [
-		  		"closed",
-		  		"open"
-			]
+			"isOptional": true
 		}]
 	}]
 }

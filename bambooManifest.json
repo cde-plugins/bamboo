@@ -1,83 +1,48 @@
 {
-	"name": "Bamboo Plugin 1.0",
-	"vendor": "CA technologies",
-	"uniqueId": "ca.cdd.bamboo",
-	"description": "CA Release Automation Bamboo Plugin powered by Hook.io",
-	"version":"1.0",
-	"iconUrl": "https://cloud.githubusercontent.com/assets/14964166/12397368/7823d66e-be15-11e5-9b94-86673ff64912.png",
-	"endpointTemplate": {
-		"name": "Bamboo-Build",
-		"description": "Bamboo Endpoint",
-		"serviceType": "ENDPOINT",
-		"url":"a url",
-		"uniqueId": "ca.cde.bamboo.build.endpoint",
-		"parameters": 
-		[
-			{
-				"uniqueId": "ca.cde.bamboo.endpoint.url",
-				"name": "url",
-				"displayName": "URL",
-				"type": "string",
-				"isOptional": false,
-				"defaultValue": null,
-				"description": "Enter the full URL of the bamboo system to connect to, ex. http://[Bamboo server]:8085/"
-			},
-			{
-				"uniqueId": "ca.cde.bamboo.endpoint.user",
-				"name": "user",
-				"displayName": "Bamboo User",
-				"type": "string",
-				"isOptional": false,
-				"defaultValue": null,
-				"description": Bamboo User Name"
-			},
-			{
-				"uniqueId": "ca.cde.bamboo.endpoint.password",
-				"name": "Password",
-				"displayName": "Bamboo User Password",
-				"type": "password",
-				"isOptional": false,
-				"defaultValue": null,
-				"description": "Bamboo user password"
-			},
-			{
-				"name": "bambooBuildProject",
-				"uniqueId": "ca.cde.bamboo.endpoint.buildProject",
-				"displayName": "Bamboo Build Project",
-				"type": "string",
-				"isOptional": false
-			}
-		],
-	   "endPointType": "ENDPOINT"
-	},
-	"services": 
-	[
-		{
-			"name": "Run Bamboo Build",
-			"description": "Use this task to run a Bamboo directed build",
-			"serviceType": "TASK",
-			"uniqueId": "ca.cde.bamboo.task.run_build",
-			"url": "/runBamboo-build",
-			"parameters": 
-			[
-				{
-					"uniqueId": "ca.cde.bamboo.task.run_build.planKey",
-					"name": "planKey",
-					"displayName": "Bamboo Plan Key",
-					"type": "string",
-					"isOptional": false,
-					"defaultValue": null,
-					"description": "Bamboo Plan Key"
-				},
-				{
-					"uniqueId": "ca.cde.bamboo.task.run_build.buildStatus",
-					"name": "buildStatus",
-					"description": "Bamboo build status"
-					"displayName": "Build Status",
-					"type": "string",
-					"isOptional": false
-				}
-		   	]
-		},
-	]
+  "name": "Atlassian Bamboo",
+  "vendor": "CA Technologies",
+  "uniqueId": "ca.cdd.bamboo",
+  "description": "Plugin for Atlassian Bamboo powered by Hook.io",
+  "version": "1.0.0",
+  "iconUrl":"",
+  "endpointTemplate": 
+  {
+	    "name": "Atlassian Bamboo",
+	    "description": "Endpoint Template for Atlassian Bamboo",
+	    "serviceType": "ENDPOINT",
+	    "url": "a url",
+	    "uniqueId": "ca.cdd.bamboo.endpoint",
+	    "parameters": 
+	    [
+		      {
+		        "uniqueId": "ca.cdd.bamboo.endpoint.url",
+		        "name": "url",
+		        "displayName": "Url",
+		        "type": "string",
+		        "isOptional": false,
+		        "defaultValue": null,
+		        "description": "Enter the full URL of the System you want to connect to, ex. https://[RA server]:8080/"
+		      },
+		      {
+		        "uniqueId": "ca.cdd.bamboo.endpoint.username",
+		        "name": "username",
+		        "displayName": "User name",
+		        "type": "string",
+		        "isOptional": false,
+		        "defaultValue": null,
+		        "description": "User Name"
+		      },
+		      {
+		        "uniqueId": "ca.cdd.bamboo.endpoint.password",
+		        "name": "password",
+		        "displayName": "Password",
+		        "type": "password",
+		        "isOptional": false,
+		        "defaultValue": null,
+		        "description": "Password"
+		      }
+	    ],
+	    "endPointType": "ENDPOINT"
+  }
+	
 }

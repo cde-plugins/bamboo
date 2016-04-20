@@ -6,8 +6,8 @@
 module['exports'] = function runBambooBuild (hook) {
     // Read task inputs
     var request = require('request'),
-        endPointProperties = hook.req.body.endPointProperties,
-        bambooserver = endPointProperties.bambooserver,
+        endPointProperties = hook.params.endPointProperties,
+        bambooserver = endPointProperties.url,
         user = endPointProperties.user,
         password = endPointProperties.password,
 

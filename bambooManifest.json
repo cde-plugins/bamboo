@@ -18,12 +18,31 @@
 		      {
 		        "uniqueId": "ca.cdd.bamboo.endpoint.url",
 		        "name": "url",
-		        "displayName": "Url",
+		        "displayName": "Bamboo URL",
 		        "type": "string",
 		        "isOptional": false,
 		        "defaultValue": null,
-		        "description": "Enter the full URL of the System you want to connect to, ex. https://[RA server]:8080/"
+		        "description": "Enter the full URL of the System you want to connect to, ex. https://[Bamboo server]:8085/"
+		      },
+		      {
+		        "uniqueId": "ca.cdd.bamboo.endpoint.username",
+		        "name": "username",
+		        "displayName": "Bamboo Username",
+		        "type": "string",
+		        "isOptional": false,
+		        "defaultValue": null,
+		        "description": "Enter the Bamboo username"
+		      },
+		      {
+		        "uniqueId": "ca.cdd.bamboo.endpoint.password",
+		        "name": "password",
+		        "displayName": "Bamboo User Password",
+		        "type": "password",
+		        "isOptional": false,
+		        "defaultValue": null,
+		        "description": "Enter the Bamboo user's password"
 		      }
+		      
 	    ]
   },
 	"services":

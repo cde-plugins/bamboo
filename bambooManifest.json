@@ -22,24 +22,6 @@
 		        "isOptional": false,
 		        "defaultValue": null,
 		        "description": "Enter the full URL of the System you want to connect to, ex. https://[RA server]:8080/"
-		      },
-		      {
-		        "uniqueId": "ca.cdd.bamboo.endpoint.username",
-		        "name": "username",
-		        "displayName": "User name",
-		        "type": "string",
-		        "isOptional": false,
-		        "defaultValue": null,
-		        "description": "User Name"
-		      },
-		      {
-		        "uniqueId": "ca.cdd.bamboo.endpoint.password",
-		        "name": "password",
-		        "displayName": "Password",
-		        "type": "password",
-		        "isOptional": false,
-		        "defaultValue": null,
-		        "description": "Password"
 		      }
 	    ],
 	    "endPointType": "ENDPOINT"

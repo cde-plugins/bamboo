@@ -25,6 +25,12 @@
 		        "description": "Enter the full URL of the System you want to connect to, ex. https://[RA server]:8080/"
 		      }
 	    ]
-  }
+  },
+	"services":
+	[
+		{
+		}
+	]
+  
 	
 }

@@ -10,6 +10,7 @@
 	    "name": "Atlassian Bamboo",
 	    "description": "Endpoint Template for Atlassian Bamboo",
 	    "serviceType": "ENDPOINT",
+	    "endPointType": "Bamboo endpoint",
 	    "url": "a url",
 	    "uniqueId": "ca.cdd.bamboo.endpoint",
 	    "parameters": 
@@ -23,8 +24,7 @@
 		        "defaultValue": null,
 		        "description": "Enter the full URL of the System you want to connect to, ex. https://[RA server]:8080/"
 		      }
-	    ],
-	    "endPointType": "ENDPOINT"
+	    ]
   }
 	
 }

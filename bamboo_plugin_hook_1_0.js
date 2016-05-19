@@ -16,26 +16,52 @@ module['exports'] = function runBambooBuild (hook) {
         newStatus = taskProperties.issueStatus;
 
     //authorization = authorization == "Trust me" ? hook.env.githubAuth : authorization;
-    headers = {'Authorization': authorization, 'User-Agent': 'request'};
-    requestBody = JSON.stringify({ "state" : newStatus });
-    console.log("user["+user+"] repository["+repository+"] issueId["+issueId+"] will change to ["+newStatus+"]");
+    // need to create an encoded value.
+    var encodedUser = window.btoa(escape(endcodedURIComponent(user+password)));
+    
+    headers = {'Authorization': encodedUser, 'X-Atlassian-Token': 'nocheck'};
+    //requestBody = JSON.stringify({ "state" : newStatus });
+    //console.log("user["+user+"] repository["+repository+"] issueId["+issueId+"] will change to ["+newStatus+"]");
+    console.log("user["+user+"] running new build based off Bamboo plan key["+plankey+"]");
 
     // Update issuse using Bamboo REST API
-    var url = 'repo'+'rest/api/latest';
-    request.patch({'url':url, 'body':requestBody, 'headers':headers}, function(err, res, resBody){
-        if (err) {
-            return hook.res.end(err.messsage);
-        }
+    var url = 'bambooserver'+'rest/api/latest/queue/'+'planKey';
+    //request.patch(
+    request.post(
+        //{'url':url, 'body':requestBody, 'headers':headers}, function(err, res, resBody)
+        {'url':url, 'headers':headers}, function(err, res, resBody)
+            {
+                if (err) 
+                {
+                    return hook.res.end(err.messsage);
+                }
 
         // Build response
-        hook.res.setHeader("Content-Type", "application/json");
-        hook.res.end(JSON.stringify({
-            'externalTaskExecutionStatus' : 'FINISHED',
-            'executionContext' : {},
-            'taskState' : "Issue #"+issueId+" is "+newStatus,
-            'detailedInfo': "Issue number "+issueId+" state is now "+newStatus,
-            'progress' : 100,
-            'delayTillNextPoll' : 0
-        }));
-    })
+        //hook.res.setHeader("Content-Type", "application/json");
+        hook.res.setHeader("Content-Type", "application/xml");
+        
+        // now processing the response
+        var resBuild = "/s:restQueueBuild/buildResultKey";
+        var responseNode = XML.getNode(hook.resBody, resBuild);
+        
+        hook.res.end(JSON.stringify(
+                    {
+                        'bamboo build' : "+responseNode"
+                    }
+                )
+            );
+        
+        //hook.res.end(JSON.stringify(
+        //    {
+        //    'externalTaskExecutionStatus' : 'FINISHED',
+        //    'executionContext' : {},
+        //    'taskState' : "Issue #"+issueId+" is "+newStatus,
+        //    'detailedInfo': "Issue number "+issueId+" state is now "+newStatus,
+        //    'progress' : 100,
+        //    'delayTillNextPoll' : 0
+        //    }
+        //    )
+        //);
+    }
+)
 };

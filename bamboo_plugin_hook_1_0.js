@@ -46,7 +46,7 @@ module['exports'] = function runBambooBuild (hook) {
         
         hook.res.end(JSON.stringify(
                     {
-                        'bamboo build' : "+responseNode"
+                        'bamboo build' : "+responseNode+"
                     }
                 )
             );

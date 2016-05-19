@@ -7,17 +7,17 @@ module['exports'] = function runBambooBuild (hook) {
     // Read task inputs
     var request = require('request'),
         endPointProperties = hook.req.body.endPointProperties,
-        bambooserver = endPointProperties.bambooserver,
+        bambooserver = endPointProperties.url,
         user = endPointProperties.user,
         password = endPointProperties.password,
 
         taskProperties = hook.req.body.taskProperties,
-        planKey = taskProperties.planKey,
-        newStatus = taskProperties.issueStatus;
+        planKey = taskProperties.planKey;
+        //newStatus = taskProperties.issueStatus;
 
     //authorization = authorization == "Trust me" ? hook.env.githubAuth : authorization;
     // need to create an encoded value.
-    var encodedUser = window.btoa(escape(endcodedURIComponent(user+password)));
+    encodedUser = window.btoa(escape(endcodedURIComponent(user+password)));
     
     headers = {'Authorization': encodedUser, 'X-Atlassian-Token': 'nocheck'};
     //requestBody = JSON.stringify({ "state" : newStatus });
@@ -25,7 +25,7 @@ module['exports'] = function runBambooBuild (hook) {
     console.log("user["+user+"] running new build based off Bamboo plan key["+plankey+"]");
 
     // Update issuse using Bamboo REST API
-    var url = 'bambooserver'+'rest/api/latest/queue/'+'planKey';
+    url = 'bambooserver'+'rest/api/latest/queue/'+'planKey';
     //request.patch(
     request.post(
         //{'url':url, 'body':requestBody, 'headers':headers}, function(err, res, resBody)
@@ -41,8 +41,8 @@ module['exports'] = function runBambooBuild (hook) {
         hook.res.setHeader("Content-Type", "application/xml");
         
         // now processing the response
-        var resBuild = "/s:restQueueBuild/buildResultKey";
-        var responseNode = XML.getNode(hook.resBody, resBuild);
+        resBuild = "/s:restQueueBuild/buildResultKey";
+        responseNode = XML.getNode(hook.resBody, resBuild);
         
         hook.res.end(JSON.stringify(
                     {
@@ -51,17 +51,6 @@ module['exports'] = function runBambooBuild (hook) {
                 )
             );
         
-        //hook.res.end(JSON.stringify(
-        //    {
-        //    'externalTaskExecutionStatus' : 'FINISHED',
-        //    'executionContext' : {},
-        //    'taskState' : "Issue #"+issueId+" is "+newStatus,
-        //    'detailedInfo': "Issue number "+issueId+" state is now "+newStatus,
-        //    'progress' : 100,
-        //    'delayTillNextPoll' : 0
-        //    }
-        //    )
-        //);
     }
 )
 };

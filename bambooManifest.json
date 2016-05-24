@@ -16,8 +16,8 @@
 	    "parameters": 
 	    [
 		      {
-		        "uniqueId": "ca.cdd.bamboo.endpoint.url",
-		        "name": "url",
+		        "uniqueId": "ca.cdd.bamboo.endpoint.bambooServer",
+		        "name": "bambooServer",
 		        "displayName": "Bamboo URL",
 		        "type": "string",
 		        "isOptional": false,
@@ -52,7 +52,7 @@
 			"uniqueId": "ca.cdd.bamboo.task.run_build",
 			"description": "Use this task to run a Bamboo build",
 			"serviceType": "TASK",
-			"url": "/rest/api/latest/queue/",
+			"url": bambooServer + "/rest/api/latest/queue/",
 			"parameters":
 			[
 				{

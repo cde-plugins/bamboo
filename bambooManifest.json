@@ -52,7 +52,7 @@
 			"uniqueId": "ca.cdd.bamboo.task.run_build",
 			"description": "Use this task to run a Bamboo build",
 			"serviceType": "TASK",
-			"url": bambooServer + "/rest/api/latest/queue/",
+			"url": "bambooServer" + "/rest/api/latest/queue/",
 			"parameters":
 			[
 				{

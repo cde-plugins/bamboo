@@ -7,7 +7,7 @@ module['exports'] = function runBambooBuild (hook) {
     // Read task inputs
     var request = require('request'),
         endPointProperties = hook.params.endPointProperties,
-        bambooserver = endPointProperties.url,
+        bambooserver = endPointProperties.bambooServer,
         user = endPointProperties.user,
         password = endPointProperties.password,
 
@@ -25,11 +25,11 @@ module['exports'] = function runBambooBuild (hook) {
     console.log("user["+user+"] running new build based off Bamboo plan key["+plankey+"]");
 
     // Update issuse using Bamboo REST API
-    var url = 'bambooserver'+'rest/api/latest/queue/'+'planKey';
+    var urlValue = bambooServer + 'rest/api/latest/queue/' + planKey;
     //request.patch(
     request.post(
         //{'url':url, 'body':requestBody, 'headers':headers}, function(err, res, resBody)
-        {'url':url, 'headers':headers}, function(err, res, resBody)
+        {'url':urlValue, 'headers':headers}, function(err, res, resBody)
             {
                 if (err) 
                 {

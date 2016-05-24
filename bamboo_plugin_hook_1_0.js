@@ -7,12 +7,12 @@ module['exports'] = function runBambooBuild (hook) {
     // Read task inputs
     var request = require('request'),
         endPointProperties = hook.params.endPointProperties,
-        bambooserver = endPointProperties.bambooserver,
+        bambooserver = endPointProperties.url,
         user = endPointProperties.user,
         password = endPointProperties.password,
 
         taskProperties = hook.params.taskProperties,
-        planKey = taskProperties.planKey,
+        planKey = taskProperties.planKey;
         //newStatus = taskProperties.issueStatus;
 
     //authorization = authorization == "Trust me" ? hook.env.githubAuth : authorization;

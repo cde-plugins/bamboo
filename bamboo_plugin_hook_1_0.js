@@ -13,22 +13,18 @@ module['exports'] = function runBambooBuild (hook) {
 
         taskProperties = hook.params.taskProperties,
         planKey = taskProperties.planKey;
-        //newStatus = taskProperties.issueStatus;
 
-    //authorization = authorization == "Trust me" ? hook.env.githubAuth : authorization;
     // need to create an encoded value.
     var encodedUser = window.btoa(escape(endcodedURIComponent(user+password)));
+    console.log("encodedUser value: " + encodedUser);
     
     headers = {'Authorization': encodedUser, 'X-Atlassian-Token': 'nocheck'};
-    //requestBody = JSON.stringify({ "state" : newStatus });
-    //console.log("user["+user+"] repository["+repository+"] issueId["+issueId+"] will change to ["+newStatus+"]");
     console.log("user["+user+"] running new build based off Bamboo plan key["+plankey+"]");
 
-    // Update issuse using Bamboo REST API
+    // Initiate build using the Bamboo REST API
     var urlValue = bambooServer + 'rest/api/latest/queue/' + planKey;
-    //request.patch(
+    console.log("urlValue contents: " + urlValue);
     request.post(
-        //{'url':url, 'body':requestBody, 'headers':headers}, function(err, res, resBody)
         {'url':urlValue, 'headers':headers}, function(err, res, resBody)
             {
                 if (err) 
@@ -37,7 +33,6 @@ module['exports'] = function runBambooBuild (hook) {
                 }
 
         // Build response
-        //hook.res.setHeader("Content-Type", "application/json");
         hook.res.setHeader("Content-Type", "application/xml");
         
         // now processing the response
@@ -51,17 +46,17 @@ module['exports'] = function runBambooBuild (hook) {
                 )
             );
         
-        //hook.res.end(JSON.stringify(
-        //    {
-        //    'externalTaskExecutionStatus' : 'FINISHED',
-        //    'executionContext' : {},
-        //    'taskState' : "Issue #"+issueId+" is "+newStatus,
-        //    'detailedInfo': "Issue number "+issueId+" state is now "+newStatus,
-        //    'progress' : 100,
-        //    'delayTillNextPoll' : 0
-        //    }
-        //    )
-        //);
+        hook.res.end(JSON.stringify(
+            {
+             'externalTaskExecutionStatus' : 'FINISHED',
+             'executionContext' : {},
+             'taskState' : "Bamboo build has been issued"+responseNode,
+             'detailedInfo': "Bamboo build for plan key " +planKey+ "has been issued, build number: " +responseNode,
+             'progress' : 100,
+             'delayTillNextPoll' : 0
+            }
+          )
+        );
     }
 )
 };

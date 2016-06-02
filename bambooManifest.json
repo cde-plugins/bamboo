@@ -5,7 +5,7 @@
   "description": "Plugin for Atlassian Bamboo powered by Hook.io",
   "version": "1.0.0",
   "iconUrl":"https://cloud.githubusercontent.com/assets/14964166/12397368/7823d66e-be15-11e5-9b94-86673ff64912.png",
-  "relativeUrl": false,
+  "relativeUrl": true,
   "endpointTemplate": 
   {
 	    "name": "Atlassian Bamboo",

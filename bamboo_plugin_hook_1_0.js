@@ -22,7 +22,7 @@ module['exports'] = function runBambooBuild (hook) {
     console.log("user["+user+"] running new build based off Bamboo plan key["+plankey+"]");
 
     // Initiate build using the Bamboo REST API
-    var urlValue = bambooServer + '/rest/api/latest/queue/' + planKey;
+    var urlValue = bambooServer + 'rest/api/latest/queue/' + planKey;
     console.log("urlValue contents: " + urlValue);
     request.post(
         {'url':urlValue, 'headers':headers}, function(err, res, resBody)
